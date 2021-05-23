@@ -10,43 +10,33 @@
   <title>TODO List</title>
 </head>
 <body>
-  <div class="container">
+  <div class="container" id='app'>
     <div class="components">
-      <div class="switch">
-        <div class="switch__1">
-          <input id="switch-1" type="checkbox">
-          <label for="switch-1"></label>
-        </div>
-      </div>
-      <div class="btn btn__primary"><p>Button</p></div>
-      <div class="btn btn__secondary"><p>Button</p></div>
+      <h2>{{title}}</h2>
       <div class="form">
-        <input type="text" class="form__input" placeholder="Type anything...">
+        <input type="text" class="form__input"         
+              :placeholder="myPlaceholder"
+              v-model="myInputValue"
+              @keypress.enter = 'addNewNote'>
+        <div class="btn btn__secondary" @click="addNewNote"><p>Добавить</p></div>
       </div>
-      
-      <div class="search">
-        <input type="text" class="search__input" placeholder="Search...">
-        <div class="search__icon">
-          <ion-icon name="search"></ion-icon>
+      <div class="note" v-for="(note, i) in notes">
+        <div class="chip">
+          <p>{{note}}</p>
         </div>
+        <div class="btn btn__secondary red" @click="deleteNote(i)"><p>Удалить</p></div>
       </div>
     </div>
   </div>
   <div class="container" id="app">
-    <h2>{{title}}</h2>
+    
     <div class="input-block">
-      <input type="text" 
-        :placeholder="myPlaceholder"
-        v-model="myInputValue"
-        @keypress.enter = 'addNewNote'
-      >
-      <div class="btn btn__primary"  @click="addNewNote"><p>Добавить</p></div>
 
     </div>
     <ul class="list">
       <li class="list-item" 
           v-for="(note, i) in notes"
-      >{{note}}<div class="btn btn__secondary" @click="deleteNote(i)"><p>Удалить</p></div></li>
+      >{{note}}</li>
       <div v-if="notes.length===0">Здесь пока ничего нет</div>
     </ul>
     <div>Общее количество заметок: {{notes.length}}</div>
