@@ -9,9 +9,12 @@ const App = {
   },
   methods: {
     addNewNote () {
-      this.notes.push(this.myInputValue)
-      this.myInputValue = ''
-      console.log(this.notes)
+      if (this.myInputValue) {
+        this.notes.push(this.myInputValue)
+        this.myInputValue = ''
+      } else {
+        return
+      }
     },
     deleteNote (i) {
       this.notes.splice(i, 1)
