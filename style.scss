@@ -42,7 +42,7 @@ html {
 
 .components {
   width: 75rem;
-  height: 40rem;
+  min-height: 40rem;
   border-radius: 3rem;
   box-shadow:.8rem .8rem 1.4rem var(--greyLight-2), 
             -.2rem -.2rem 1.8rem var(--white);
